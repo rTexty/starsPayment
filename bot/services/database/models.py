@@ -7,7 +7,6 @@ from dataclasses import dataclass
 
 from bot.enums import PaymentEnum
 from bot.payments.AbstractPayment import AbstractPayment
-from bot.bot import onevisionpay, wallet_pay
 
 
 class Metric(Model):
@@ -52,8 +51,9 @@ class Settings(Model):
 
     @classmethod    
     async def get_payment_class(cls) -> AbstractPayment:
+        from bot.bot import onevisionpay, wallet_pay
         payment_method = (await cls.get(name='payment_method')).bool_value
-        return [onevisionpay, wallet_pay][payment_method]
+        return [onevisionpay, wallet_pay,][payment_method]
 
 class BotUser(Model):
     id = fields.BigIntField(pk=True)
@@ -201,6 +201,8 @@ class Payment(Model):
         "models.BotUser", related_name="user"
     )
     status = fields.TextField(null=True)
+
+
 
 @dataclass
 class UserReferralData:
