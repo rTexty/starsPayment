@@ -1,0 +1,9 @@
+﻿{
+  "bot_token": "x:x",
+  "database_uri": "sqlite://database.sqlite3",
+  "payment_api_key": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "payment_secret_key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "merchant_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "service_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "wallet_pay_api_key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+}
