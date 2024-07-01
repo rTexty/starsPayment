@@ -1,10 +1,10 @@
 from aiogram import types
 from aiogram.utils.i18n import gettext as _
-from aiogram.types import InlineKeyboardButton
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.utils.keyboard import InlineKeyboardBuilder, ReplyKeyboardBuilder, WebAppInfo
 
 from .services.database.models import BotUser, Settings
-from .callback_data import ActionsWithUser, DeleteCallbackData, PaymentCallbackData
+from .callback_data import ActionsWithUser, DeleteCallbackData, PaymentCallbackData, StarsPaymentCallbackData
 
 
 remove_markup = types.ReplyKeyboardRemove(remove_keyboard=True)
@@ -146,3 +146,37 @@ def example_reply():
         .as_markup(is_persistent=True, resize_keyboard=True)
     )
 
+stars_payment_keyboard = (
+    InlineKeyboardBuilder()
+    .button(text='1 проверка - 93 ⭐️', callback_data=StarsPaymentCallbackData(checks=1, amount=93).pack(), pay=True)
+    .button(text='10 проверок - 844 ⭐️', callback_data=StarsPaymentCallbackData(checks=10, amount=844).pack(), pay=True)
+    .button(text='25 проверок - 2026 ⭐️', callback_data=StarsPaymentCallbackData(checks=25, amount=2026).pack(), pay=True)
+    .button(text='50 проверок - 3799 ⭐️', callback_data=StarsPaymentCallbackData(checks=50, amount=3799).pack(), pay=True)
+    .button(text='100 проверок - 7177 ⭐️', callback_data=StarsPaymentCallbackData(checks=100, amount=7177).pack(), pay=True)
+    .button(text='1000 проверок - 67546 ⭐️', callback_data=StarsPaymentCallbackData(checks=1000, amount=67546).pack(), pay=True)
+    .button(text='5000 проверок - 316623 ⭐️', callback_data=StarsPaymentCallbackData(checks=5000, amount=316623).pack(), pay=True)
+    .button(text='◀️ Назад', callback_data='start')
+    .adjust(1, repeat=True)
+    .as_markup()
+)
+
+select_payment_method = (
+    InlineKeyboardBuilder()
+    .button(text='Wallet Pay', callback_data='wallet_pay_method')
+    .button(text='Stars ⭐️', callback_data='stars_method')
+    .adjust(1, repeat=True)
+    .as_markup()
+)
+
+def confirmation_stars_def(amount: int):
+    # Создаем кнопки
+    pay_button = InlineKeyboardButton(text=f'✅ Оплатить {amount}⭐️', pay=True)
+    back_button = InlineKeyboardButton(text='❌ Назад', callback_data='stars_payment_cancel')
+
+    # Создаем клавиатуру и добавляем кнопки
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [pay_button],  # Кнопка в первом ряду
+        [back_button]  # Кнопка во втором ряду
+    ])
+
+    return keyboard

@@ -13,4 +13,7 @@ class DeleteCallbackData(CallbackData, prefix="delete_entity"):
 class PaymentCallbackData(CallbackData, prefix="Payment"):
     checks: int
     amount: float
-    
+
+class StarsPaymentCallbackData(CallbackData, prefix="StarsPayment"):
+    checks: int
+    amount: int

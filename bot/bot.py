@@ -1,4 +1,6 @@
+from aiogram import F
 from aiogram.fsm.storage.memory import MemoryStorage
+from aiogram.filters import Command
 
 from bot.payments.onevisionpay import Onevisionpay
 from bot.payments.wallet_pay import WalletPay
@@ -9,7 +11,7 @@ from .utils.bot import Bot
 from .utils.dispatcher import Dispatcher
 
 
-bot = Bot(BotConfig.load_first(), parse_mode="html")
+bot = Bot(BotConfig.load_first(),)
 dispatcher = Dispatcher(storage=MemoryStorage())
 onevisionpay = Onevisionpay(
     bot.config.payment_api_key, bot.config.payment_secret_key,
@@ -17,3 +19,4 @@ onevisionpay = Onevisionpay(
 )
 
 wallet_pay = WalletPay(bot.config.wallet_pay_api_key)
+

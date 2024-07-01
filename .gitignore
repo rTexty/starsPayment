@@ -1,7 +1,10 @@
 # Custom
 *_dev.*
+*migrations
 *.sqlite3*
-
+*.idea
+*.DS_Store
+*config.json
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -131,3 +134,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+config.json
+config.json

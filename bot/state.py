@@ -16,3 +16,7 @@ class CreateMetricState(StatesGroup):
 
 class DelMetricState(StatesGroup):
     waiting_name = State()
+
+class PaymentState(StatesGroup):
+    START = State()
+    PAYMENT_STATUS = State()
